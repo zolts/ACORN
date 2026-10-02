@@ -8,7 +8,7 @@
 %consensus predictions of "uncertain" (-1) may appear when none of the constituent clusterings classified a neuron, or its final assignment would be below the confidence threshold
 %
 %RETURN VALUES:
-%returns an arry of consensus predictions.
+%returns an array of consensus predictions.
 %
 %optionally, returns confidence values (2nd return value)
 %optionally, returns the "V" matrix of votes (3rd return value)
