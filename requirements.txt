@@ -1,0 +1,5 @@
+numpy
+pandas
+scipy
+hdbscan
+umap-learn
