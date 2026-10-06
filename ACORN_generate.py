@@ -14,6 +14,7 @@
 import numpy as np
 import pandas as pd
 import os
+import sys
 import random
 import math
 import pathlib
@@ -22,9 +23,14 @@ import hdbscan
 from umap import umap_ as umap
 from sklearn.utils import check_random_state
 
-# SET YOUR INPUT FILE AND OUTPUT FOLDER HERE
-matfiletoload = r"h:\MATLAB\waveformmatrix-new.mat" # the mat file should contain a matrix named normalizedWF
-currentoutputfolder = r"ACORN-test" # will create csv files here; one for each constituent clustering. ACORN_consensus, which will create the final consensus clustering, will expect this folder as its first argument
+if len(sys.argv) > 2:
+    inputpathorarray = sys.argv[1]
+    currentoutputfolder = sys.argv[2]
+else:
+    print("Warning: Missing arguments. Using defaults.")
+    inputpathorarray = r"h:\MATLAB\acorn-dataset.mat" # may either point to a mat file containing a matrix named normalizedWF, or (without Matlab) directly contain the normalized waveform data in the form of an array.
+    currentoutputfolder = r"ACORN-test" # will create csv files here; one for each constituent clustering. ACORN_consensus, which will create the final consensus clustering, will expect this folder as its first argument
+
 
 def min_spanning_tree(knn_indices, knn_dists, n_neighbors, threshold):
   rows = np.zeros(knn_indices.shape[0] * n_neighbors, dtype=np.int32)
@@ -200,8 +206,11 @@ def mutual_nn_nearest(knn_indices, knn_dists, n_neighbors, n_neighbors_max, conn
   
   return connected_mnn, mutual_nn, np.array(new_knn_indices), np.array(new_knn_dists)  
 
-loadedfrommatlab = scipy.io.loadmat(matfiletoload)
-normalizedWF = loadedfrommatlab["normalizedWF"]
+if isinstance(inputpathorarray, str):
+  loadedfrommatlab = scipy.io.loadmat(inputpathorarray)
+  normalizedWF = loadedfrommatlab["normalizedWF"]
+else:
+  normalizedWF = inputpathorarray
 pathlib.Path(currentoutputfolder).mkdir(exist_ok=True)
 
 neuronn = normalizedWF.shape[0]
