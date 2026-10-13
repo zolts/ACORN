@@ -23,13 +23,33 @@ import hdbscan
 from umap import umap_ as umap
 from sklearn.utils import check_random_state
 
-if len(sys.argv) > 2:
+inputpathorarray = r"dataset/acorn-normalizedWF.csv" # may point to a csv file, an h5 file containing a key named /normalizedWF, a mat file containing a matrix named normalizedWF, or itself directly contain the normalized waveform data.
+currentoutputfolder = r"ACORN-test" # will create csv files here; one for each constituent clustering. ACORN_consensus, which will create the final consensus clustering, will expect this folder as its first argument
+
+if len(sys.argv) > 1:
     inputpathorarray = sys.argv[1]
+else:
+    print(f"Warning: Missing input argument. Using default location: {inputpathorarray}")
+    
+if len(sys.argv) > 2:
     currentoutputfolder = sys.argv[2]
 else:
-    print("Warning: Missing arguments. Using defaults.")
-    inputpathorarray = r"h:\MATLAB\acorn-dataset.mat" # may either point to a mat file containing a matrix named normalizedWF, or (without Matlab) directly contain the normalized waveform data in the form of an array.
-    currentoutputfolder = r"ACORN-test" # will create csv files here; one for each constituent clustering. ACORN_consensus, which will create the final consensus clustering, will expect this folder as its first argument
+    print(f"Warning: Missing output argument. Using default location: {currentoutputfolder}")
+
+if isinstance(inputpathorarray, str):
+  if inputpathorarray[-4:].lower() == ".csv":
+    normalizedWF = pd.read_csv(inputpathorarray, header=None)
+  elif inputpathorarray[-3:].lower() == ".h5":
+    import h5py
+    with h5py.File(inputpathorarray, "r") as h5f:
+      normalizedWF = np.transpose(h5f["/normalizedWF"][()])
+  elif inputpathorarray[-4:].lower() == ".mat":
+      loadedfrommatlab = scipy.io.loadmat(inputpathorarray)
+      normalizedWF = loadedfrommatlab["normalizedWF"]
+  else:
+    raise ValueError('Unexpected input filename. Input filenames should end in ".csv" or ".h5" or ".mat"')
+else:
+  normalizedWF = inputpathorarray
 
 
 def min_spanning_tree(knn_indices, knn_dists, n_neighbors, threshold):
@@ -206,11 +226,6 @@ def mutual_nn_nearest(knn_indices, knn_dists, n_neighbors, n_neighbors_max, conn
   
   return connected_mnn, mutual_nn, np.array(new_knn_indices), np.array(new_knn_dists)  
 
-if isinstance(inputpathorarray, str):
-  loadedfrommatlab = scipy.io.loadmat(inputpathorarray)
-  normalizedWF = loadedfrommatlab["normalizedWF"]
-else:
-  normalizedWF = inputpathorarray
 pathlib.Path(currentoutputfolder).mkdir(exist_ok=True)
 
 neuronn = normalizedWF.shape[0]
