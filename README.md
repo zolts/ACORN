@@ -3,6 +3,21 @@
 
 This repository contains code used in the manuscript "ACORN: Adaptive Consensus of Repeated Clusterings identifies pyramidal neurons and interneurons in the primate motor cortex based on extracellular spike waveforms".
 
+## Quickstart
+### Installation
+1. [Install uv](https://docs.astral.sh/uv/getting-started/installation/) (recommended)
+2. Clone (or download and extract) this repository.
+3. Open a terminal and navigate to the main ACORN folder.
+4. Create a new Python 3.14 virtual environment: `uv venv ACORN-venv --python 3.14`
+5. Activate the environment: `ACORN-venv\Scripts\activate`
+6. While in the environment, install the required dependencies: `uv pip install -r requirements.txt`
+
+### Running the analysis
+1. ( If not already in the main ACORN folder, navigate there. )
+2. ( If the environment is not already active, make it so: `ACORN-venv\Scripts\activate` )
+3. While in the environment, generate constituent clusterings: `python ACORN_generate.py "dataset\acorn-normalizedWF.csv" "ACORN-test"`
+4. While in the environment, obtain the consensus results: `python ACORN_consensus.py "ACORN-test"`
+
 ## Requirements
 The following Python packages and their dependencies:
 * numpy
