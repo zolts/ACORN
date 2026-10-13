@@ -3,3 +3,4 @@ pandas
 scipy
 hdbscan
 umap-learn
+h5py
