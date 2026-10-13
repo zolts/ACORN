@@ -1,4 +1,6 @@
-### ACORN dataset
+## ACORN dataset
+
+### The `mat` file
 
 acorn-dataset.mat contains the following variables:
  
@@ -15,3 +17,7 @@ acorn-dataset.mat contains the following variables:
 * **isINT**: for each neuron, `true` if an interneuron, `false` if not.
 * **isPTN**: for each neuron, `true` if a pyramidal tract neuron, `false` if not.
 * **groundtruth**: for each neuron, `1` if interneuron, `2` if pyramidal tract neuron.
+
+### The `csv` file
+
+[acorn-normalizedWF.csv](acorn-normalizedWF.csv) contains comma-delimited data corresponding to **normalizedWF** mentioned above. Each row is a different neuron; each column is a different timepoint. Data points are normalized voltage values of action potential waveforms averaged across spikes from the same neuron.
