@@ -284,6 +284,10 @@ def _main(argv=None) -> None:
     print(f"{iterationn} constituent clusterings, {neuronn} neurons, {result.exemplarindices.size} consensus clusters")
     for cluster, count in zip(*np.unique(result.predictions, return_counts=True)):
         print(f"  {'uncertain' if cluster == CONST_UNCLASSIFIED else 'cluster ' + str(cluster)}: {count}")
+    print()
+    print("Individual cluster predictions:")
+    for currentprediction in result.predictions:
+        print(currentprediction)
     if args.output:
         pd.DataFrame({"neuron": np.arange(neuronn) + args.index_base, "prediction": result.predictions,
                       "confidence": result.confidence}).to_csv(args.output, index=False)
