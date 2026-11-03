@@ -5,7 +5,7 @@ The dataset is available in a few different formats. They all reproduce the same
 
 ### The dataset in Matlab format
 
-acorn-dataset.mat contains the following variables:
+[acorn-dataset.mat](https://doi.org/10.25405/ncl.34838949) contains the following variables:
  
 * **originalindividualtraces**: for each neuron, each individual action potential, raw.
 * **individualtraces**: for each neuron, each individual action potential, processed using `cleanspike`.
