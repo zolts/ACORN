@@ -1,7 +1,7 @@
 # ACORN
 **Adaptive Consensus of Repeated Clusterings**
 
-This repository contains code used in the manuscript "ACORN: Adaptive Consensus of Repeated Clusterings identifies pyramidal neurons and interneurons in the primate motor cortex based on extracellular spike waveforms".
+This repository contains code used in the manuscript "[ACORN: Adaptive Consensus of Repeated Clusterings identifies pyramidal neurons and interneurons in the primate motor cortex based on extracellular spike waveforms](https://www.eneuro.org/content/13/10/ENEURO.0394-25.2026)" by Soltesz et al (eNeuro, 2026).
 
 ## Quickstart
 ### Installation
@@ -63,3 +63,4 @@ Matlab and Python versions both exist: `ACORN_consensus.m` and `ACORN_consensus.
 * **HDBSCAN** ([repo](https://github.com/scikit-learn-contrib/hdbscan)): McInnes L, Healy J, Astels S, "[hdbscan: Hierarchical density based clustering](https://doi.org/10.21105/joss.00205)", 2017.
 * **UMAP** ([repo](https://github.com/lmcinnes/umap)): McInnes L, Healy J, Melville J, "[UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction](https://arxiv.org/abs/1802.03426)", 2018.
 * **UMAP clustering optimization** ([repo](https://github.com/adalmia96/umap-mnn)): Dalmia A, Sia S, "[Clustering with UMAP: Why and How Connectivity Matters](https://arxiv.org/abs/2108.05525)", 2021.
+* **ACORN** ([this repo](https://github.com/zolts/ACORN)): Soltesz Z, Tenorio VSGM, Tohyama T, Baker AME, Baker SN, Kraskov A, "[ACORN: Adaptive Consensus of Repeated Clusterings Identifies Pyramidal Neurons and Interneurons in the Primate Motor Cortex Based on Extracellular Spike Waveforms](https://www.eneuro.org/content/13/10/ENEURO.0394-25.2026)", 2026.
